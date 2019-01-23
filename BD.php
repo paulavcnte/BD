@@ -22,7 +22,7 @@ class BD {
     private $pass;
     private $bd;
 
-    public function __construct($host = "localhost", $user = "root", $pass = "root", $bd = "dwes") {
+    public function __construct($host , $user , $pass) {
         $this->host = $host;
         $this->user = $user;
         $this->pass = $pass;
@@ -31,7 +31,7 @@ class BD {
     }
 
     private function conexion(): mysqli {
-        $con = new mysqli($this->host, $this->user, $this->pass, $this->bd); // pasamos todos los parámetros de mysqli
+        $con = new mysqli($this->host, $this->user, $this->pass); // pasamos todos los parámetros de mysqli
         if ($con->connect_errno) {
             $this->info = "Error conectando ... <strong>" . $con->connect_errno . "</strong>";
         }
@@ -100,6 +100,19 @@ class BD {
             $campos[] = $campo->name;
         }
         return $campos;
+    }
+    
+    public function verbasesdedatos(){
+   $result = @mysql_query('SHOW DATABASES'); 
+    if (!$result) { 
+    exit('<p>Fout tonen databases: ' . mysql_error() . 
+    '</p>'); 
+    } 
+
+    while ($row = mysql_fetch_array($result)) { 
+    echo '<p>' . $row['database'] . '</p>'; 
+    } 
+
     }
 
     public function cerrar() {//cerramos la conexion con la bbdd
