@@ -103,16 +103,22 @@ class BD {
     }
     
     public function verbasesdedatos(){
-   $result = @mysql_query('SHOW DATABASES'); 
-    if (!$result) { 
-    exit('<p>Fout tonen databases: ' . mysql_error() . 
-    '</p>'); 
-    } 
-
-    while ($row = mysql_fetch_array($result)) { 
-    echo '<p>' . $row['database'] . '</p>'; 
-    } 
-
+        try{
+         $conexion = new PDO($host, $user, $pass);
+                
+        $sentencia = $conexion->prepare("show databases");
+        $sentencia->execute();
+        
+        while ($fila = $sentencia->fetch(PDO::FETCH_ASSOC)){
+            $filas[]=$fila;
+        }
+         return $filas;
+        
+        } catch (PDOException $p) {
+            echo "Error ".$p->getMessage()."<br />";
+        }
+        
+       
     }
 
     public function cerrar() {//cerramos la conexion con la bbdd

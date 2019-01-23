@@ -9,7 +9,7 @@ session_start();
  
 //Si paso parámetros de conexión los leo
 $datosConexión = [];
- $name = $_POST["name"];
+ $user = $_POST["user"];
  $pass = $_POST["pass"];
  $host = $_POST["host"];
 $_SESSION['host'] = $_POST['host'];
@@ -18,7 +18,7 @@ $_SESSION['pass'] = $_POST['pass'];
  
   $_SESSION['host'] = 'localhost';
   $_SESSION['user'] = 'root';
-  $_SESSION['pass'] = 'root';
+  $_SESSION['pass'] = '';
 
 
 $bd = new BD("$host", "$user", "$pass" );
@@ -53,19 +53,21 @@ $bd = new BD("$host", "$user", "$pass" );
         
         <?php
        if ($_POST['conectar']) {
-          //Este método retorna un array indexado con los nombres de las bases de datos
-          $basesDatos = $bd->verbasesdedatos();
+          $verbbdd = $bd->verbasesdedatos();
+          var_dump($verbbdd);
+          $bbdd = $value['verbbdd'];
+         
           ?>
           <fieldset style="width:70%">
               <legend>Gestion de las Bases de Datos del host </legend>
               <form action="tablas.php" method="post">
                   <?php
-                  foreach ($basesDatos as $basedato) {
-                    echo "<input type=radio value=$basedato name=basedatos>";
-                    echo "<label for=basedatos>$basedato</label><br />";
-                  }
-                  //Muy importante cerrar la conexión de forma explícita
-                  $db->cerrarDB();
+                   
+                    
+                    echo "<input type=radio value=$bbdd name=basedatos>";
+                   echo "<label for=basedatos>$bbdd</label><br />";
+                  
+                  $bd->cerrar();
                   ?>
                   <input type="submit" value="Gestionar">
               </form>
