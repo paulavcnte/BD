@@ -1,8 +1,62 @@
 <?php
+spl_autoload_register(function ($clase) {
+    require_once "$clase.php";
+}
+);
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+session_start();
 
+$user = $_SESSION['user'];
+$pass = $_SESSION['pass'];
+$host = $_SESSION['host'];
+$bbdd = $_SESSION['bbdd'];
+
+echo "$user, $pass,$host , $bbdd";
+
+//$bbdd = $_GET['bbdd'];
+
+$bd = new BD2($host, $user, $pass, $bbdd);
+$bd->conectar();
+
+
+$mostrar = $bd->mostrarTablas();
+
+$t = [];
+foreach ($mostrar as $v) {
+    $t[] = $v['Tables_in_' . $bbdd];
+}
+
+
+
+///Poner
+if (isset($_POST['nombreTabla'])) {
+    $nombreTabla = $_POST['nombreTabla'];
+    $_SESSION['nombreTabla'] = $nombreTabla;
+
+    $_SESSION['user'] = $user;
+    $_SESSION['pass'] = $pass;
+    $_SESSION['host'] = $host;
+    $_SESSION['bbdd'] = $bbdd;
+
+    header("Location:editar.php");
+    exit();
+}
+?>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <form action="tablas.php" method="POST">
+            <?php
+            foreach ($t as $value) {
+
+                echo" <input type='submit' name='nombreTabla' value='$value'>";
+            }
+            ?>
+        </form>
+    </body>
+</html>
