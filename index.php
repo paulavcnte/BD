@@ -18,11 +18,11 @@ $_SESSION['host'] = $_POST['host'];
 $_SESSION['user'] = $_POST['user'];
 $_SESSION['pass'] = $_POST['pass'];
 
-if (isset($_POST['gestion'])) {
-    $bbdd = $_POST["bbdd"];
-
-    $_SESSION['bbdd'] = $bbdd;
-}
+//if (isset($_POST['gestion'])) {
+//    $bbdd = $_POST["bbdd"];
+//
+//    $_SESSION['bbdd'] = $bbdd;
+//}
 
 $_SESSION['host'] = 'localhost';
 $_SESSION['user'] = 'root';
@@ -72,9 +72,9 @@ $bd = new BD($host, $user, $pass);
                 <form action="tablas.php" method="POST">
                     <?php
                     foreach ($t as $bbdd) {
-                        echo "<input type=radio value=$bbdd name=bbdd>";
-                        echo "<label>$bbdd</label><br />";
-                        // echo "<a href='tablas.php?bbdd=$bbdd'>$bbdd</a><br/>";
+                        //echo "<input type=radio value=$bbdd name=bbdd>";
+                        //echo "<label>$bbdd</label><br />";
+                        echo "<a href='tablas.php?bbdd=$bbdd'>$bbdd</a><br/>";
                     }
                     ?>
                     <input type="submit" value="Gestionar" name="gestion">

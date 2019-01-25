@@ -9,11 +9,12 @@ session_start();
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $host = $_SESSION['host'];
-$bbdd = $_SESSION['bbdd'];
+//$bbdd = $_SESSION['bbdd'];
+$bbdd = $_GET['bbdd'];
 
 echo "$user, $pass,$host , $bbdd";
 
-//$bbdd = $_GET['bbdd'];
+
 
 $bd = new BD2($host, $user, $pass, $bbdd);
 $bd->conectar();
@@ -37,7 +38,8 @@ if (isset($_POST['nombreTabla'])) {
     $_SESSION['pass'] = $pass;
     $_SESSION['host'] = $host;
     $_SESSION['bbdd'] = $bbdd;
-
+    
+ 
     header("Location:editar.php");
     exit();
 }
@@ -53,6 +55,7 @@ if (isset($_POST['nombreTabla'])) {
         <form action="tablas.php" method="POST">
             <?php
             foreach ($t as $value) {
+                echo "$t";
 
                 echo" <input type='submit' name='nombreTabla' value='$value'>";
             }

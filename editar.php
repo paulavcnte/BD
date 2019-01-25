@@ -4,8 +4,6 @@ spl_autoload_register(function ($clase) {
 }
 );
 
-
-
 session_start();
 
 $nombreTabla = $_SESSION['nombreTabla'];
@@ -34,7 +32,7 @@ $c = $bd->mostrarDatos($consulta);
         <?php
         foreach ($c as $value) {
 
-            echo "<tr><td>$value[0]</td><td>$value[2]</td><td>Editar</a></td></tr>";
+          //  echo "<tr><td>$value[0]</td><td>$value[2]</td><td>Editar</a></td></tr>";
         }
         ?>
     </body>
