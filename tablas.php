@@ -29,7 +29,7 @@ foreach ($mostrar as $v) {
 
 
 
-///Poner
+
 if (isset($_POST['nombreTabla'])) {
     $nombreTabla = $_POST['nombreTabla'];
     $_SESSION['nombreTabla'] = $nombreTabla;
