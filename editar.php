@@ -15,6 +15,7 @@ $bbdd = $_SESSION['bbdd'];
 
 $bd = new BD2($host, $user, $pass, $bbdd);
 $bd->conectar();
+echo "$nombreTabla";
 
 
 $consulta = "select * from $nombreTabla";
@@ -32,7 +33,7 @@ $c = $bd->mostrarDatos($consulta);
         <?php
         foreach ($c as $value) {
 
-          //  echo "<tr><td>$value[0]</td><td>$value[2]</td><td>Editar</a></td></tr>";
+            echo "<tr><td>$value[0]</td><td>$value[2]</td><td>Editar</a></td></tr>";
         }
         ?>
     </body>

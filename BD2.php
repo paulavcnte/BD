@@ -45,16 +45,16 @@ class BD2 extends BD {
     }
 
     public function mostrarDatos(string $consulta) {
-        $filas = [];
-
+       
+        
 
         $resultado = $this->con->query($consulta);
 //        $resultado->execute();
 //        while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
 //            $filas[] = $fila;
 //        }
-        while ($registro = $resultado->fetch(PDO::FETCH_OBJ)) {
-            var_dump($registro);
+        while ($registro = $resultado->fetch()) {
+            echo "$registro[0]";
         }
 //        return $filas;
     }
