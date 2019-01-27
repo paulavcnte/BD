@@ -52,7 +52,7 @@ class BD2 extends BD {
 //        $resultado->execute();
 //        while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
 //            $filas[] = $fila;
-//        }
+////        }
         while ($registro = $resultado->fetch()) {
             echo "$registro[0]";
         }

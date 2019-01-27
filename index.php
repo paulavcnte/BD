@@ -22,7 +22,7 @@ $_SESSION['pass'] = $_POST['pass'];
 //    $bbdd = $_POST["bbdd"];
 //
 //    $_SESSION['bbdd'] = $bbdd;
-//}
+//}//
 
 $_SESSION['host'] = 'localhost';
 $_SESSION['user'] = 'root';

@@ -85,7 +85,7 @@ class BD {
 //            $campos[] = $campo->name;
 //        }
 //        return $campos;
-//    }
+// //   }
 
     public function verbasesdedatos() {
         try {

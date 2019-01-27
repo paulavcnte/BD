@@ -9,7 +9,7 @@ session_start();
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $host = $_SESSION['host'];
-//$bbdd = $_SESSION['bbdd'];
+////$bbdd = $_SESSION['bbdd'];
 $bbdd = $_GET['bbdd'];
 
 echo "$user, $pass,$host , $bbdd";

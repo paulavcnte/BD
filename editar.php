@@ -17,7 +17,7 @@ $bd = new BD2($host, $user, $pass, $bbdd);
 $bd->conectar();
 echo "$nombreTabla";
 
-
+//selecciono todos los valores de la tabla
 $consulta = "select * from $nombreTabla";
 $c = $bd->mostrarDatos($consulta);
 ?>
