@@ -12,12 +12,17 @@ session_start();
 $user = $_POST["user"];
 $pass = $_POST["pass"];
 $host = $_POST["host"];
-$bbdd = $_POST["bbdd"];
 
-$_SESSION['host'] = $_POST['host'];
-$_SESSION['user'] = $_POST['user'];
-$_SESSION['pass'] = $_POST['pass'];
 
+
+
+if (isset($_POST['bbdd'])) {
+
+
+    $_SESSION['bbdd'] = $_POST['bbdd'];
+    header("Location:tablas.php");
+    exit();
+}
 //if (isset($_POST['gestion'])) {
 //    $bbdd = $_POST["bbdd"];
 //
@@ -47,11 +52,11 @@ $bd = new BD($host, $user, $pass);
             <legend>Datos de conexión</legend>
             <form action="index.php" method="POST">
                 <label for="host">Host</label>
-                <input type="text" name="host" value="" id="">
+                <input type="text" name="host" value="" id=""><br/>
                 <label for="user">Usuario</label>
-                <input type="text" name="user" value="" id="">
+                <input type="text" name="user" value="" id=""><br/>
                 <label for="pass">Password</label>
-                <input type="text" name="pass" value="" id="">
+                <input type="text" name="pass" value="" id=""><br/>
                 <input type="submit" value="Conectar" name="conectar">
             </form>
 
@@ -59,6 +64,9 @@ $bd = new BD($host, $user, $pass);
 
         <?php
         if ($_POST['conectar']) {
+            $_SESSION['host'] = $_POST['host'];
+            $_SESSION['user'] = $_POST['user'];
+            $_SESSION['pass'] = $_POST['pass'];
             $t = [];
             $verbbdd = $bd->verbasesdedatos();
             // var_dump($verbbdd);
@@ -69,15 +77,15 @@ $bd = new BD($host, $user, $pass);
             ?>
             <fieldset style="width:70%">
                 <legend>Gestion de las Bases de Datos del host </legend>
-                <form action="tablas.php" method="POST">
+                <form action="index.php" method="POST">
                     <?php
                     foreach ($t as $bbdd) {
                         //echo "<input type=radio value=$bbdd name=bbdd>";
                         //echo "<label>$bbdd</label><br />";
-                        echo "<a href='tablas.php?bbdd=$bbdd'>$bbdd</a><br/>";
+                        echo "<input type='submit' name='bbdd' value='$bbdd'><br/>";
                     }
                     ?>
-                    <input type="submit" value="Gestionar" name="gestion">
+
                 </form>
             </fieldset>
         <?php } ?>
